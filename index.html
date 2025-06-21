@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Public IP</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+  <div class="text-center space-y-6">
+    <h1 class="text-4xl font-bold">🌐 Your Public IP</h1>
+    <p id="ip" class="text-3xl font-mono text-green-400">Loading...</p>
+    <p class="text-sm text-gray-400">Updated every time you refresh.</p>
+  </div>
+
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip;
+      })
+      .catch(() => {
+        document.getElementById('ip').textContent = 'Unable to fetch IP';
+      });
+  </script>
+</body>
+</html>
